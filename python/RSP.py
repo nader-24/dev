@@ -7,8 +7,5 @@ class RSP(Enum):
     SCISSORS = 2
     PAPER = 3
 
-    # def __str__(self):
-    #     return self.name
-
-
-print(RSP.ROCK.name)
+    def __str__(self):
+        return self.name
