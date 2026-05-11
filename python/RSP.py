@@ -1,12 +1,15 @@
 # RSP Game
 
+import time
 from enum import Enum
+import random
 import sys
 import os
 
 player1_score = 0
 player2_score = 0
-choice = str()
+choice = int()
+user_choice = int(0)
 
 
 class RSP(Enum):
@@ -33,6 +36,20 @@ def decide_winner(player1, player2):
         player2_score += 1
 
 
+def exit1():
+    os.system('exit')
+
+
+def game():
+    player = 0
+    os.system('cls')
+    while player not in [1, 2, 3]:
+        player = int(
+            input("Enter.......\n1 for Rock\n2 for paper\n3 for Scissors"))
+    computer = random.randint(1, 2, 3)
+    decide_winner(player, computer)
+
+
 def show_score():
     print("player 1".ljust(15, '.')+str(player1_score))
     print("player 2".ljust(15, '.')+str(player2_score))
@@ -44,13 +61,21 @@ def welcome():
     print("2 play".ljust(19, '.')+'1')
     print("2 score".ljust(19, '.')+'2')
     print("2 exit".ljust(19, '.')+'3')
-    choice = input("")
+    choice = int(input(""))
     return choice
 
 
-no = welcome()
-while no not in "123":
-    no = welcome()
+while True:
 
+    while user_choice not in [1, 2, 3]:
+        os.system('cls')
+        print("Enter 1, 2, or 3.")
+        time.sleep(3)
+        user_choice = welcome()
 
-os.system('exit')
+    if user_choice == 1:
+        game()
+    elif user_choice == 2:
+        show_score()
+    else:
+        exit1()
